@@ -6,6 +6,8 @@ server {
     ssl_certificate_key /etc/letsencrypt/keys/{{ server_domain }}.key;
     ssl_trusted_certificate /etc/letsencrypt/certs/chain_{{ server_domain }}.pem;
 
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+
     location / {
         include uwsgi_params;
         uwsgi_pass unix:/run/uwsgi/{{ app_name }}.sock;
