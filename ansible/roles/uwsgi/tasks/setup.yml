@@ -4,3 +4,4 @@
     state: latest
     name:
       - uwsgi
+  tags: skip_ansible_lint

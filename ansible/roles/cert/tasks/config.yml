@@ -12,7 +12,7 @@
 - name: force all notified handlers to run at this point, not waiting for normal sync points
   meta: flush_handlers
 
-- name: Allow incoming http connections for letsencrypt (handler to block access)
+- name: Temporary allow incoming http connections for letsencrypt (handler to block access after)
   ufw:
     rule: allow
     proto: tcp

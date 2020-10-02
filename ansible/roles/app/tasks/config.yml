@@ -3,6 +3,7 @@
   pip:
     state: latest
     requirements: /opt/app/requirements.txt
+  tags: skip_ansible_lint
 
 - name: Upload uWSGI vassal config
   template:

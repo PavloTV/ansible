@@ -16,6 +16,9 @@
      file:
        path: "{{ first_run_loc_file }}"
        state: touch
+       owner: root
+       group: root
+       mode: '0644'
    - name: Check if reboot is required
      stat:
        path: "{{ reboot_required_file }}"
@@ -28,8 +31,10 @@
 
 - name: Install required system packages
   apt: name={{ required_packages }} state=latest update_cache=yes
+  tags: skip_ansible_lint
 
 - name: Install python 3 libraries
   pip:
     state: latest
     name: "{{ python3_modules }}"
+  tags: skip_ansible_lint

@@ -4,3 +4,4 @@
     name: nginx
     state: latest
   notify: Restart NGINX
+  tags: skip_ansible_lint
