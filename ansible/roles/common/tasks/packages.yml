@@ -7,15 +7,15 @@
 
 - name: First run tasks
   block:
-   - name: Create first_run_loc_file
-     file:
-       path: "{{ first_run_loc_file }}"
-       state: touch
    - name: apt upgrade on first run
      apt:
        update_cache: yes
        upgrade: full
        cache_valid_time: 86400
+   - name: Create first_run_loc_file
+     file:
+       path: "{{ first_run_loc_file }}"
+       state: touch
    - name: Check if reboot is required
      stat:
        path: "{{ reboot_required_file }}"
