@@ -13,7 +13,6 @@
 
 - name: Assert POST payMethods
   assert: that="this.json.invoice and this.json.withdraw"
-  ignore_errors: True
   tags: TEST
 
 - name: Test GET payMethods calculate
@@ -27,7 +26,6 @@
 
 - name: Assert POST payMethods calculate
   assert: that="this.json.amount"
-  ignore_errors: True
   tags: TEST
 
 - name: Test POST bids
