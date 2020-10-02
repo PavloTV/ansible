@@ -1,0 +1,11 @@
+---
+# handlers file for app
+- name: Reload NGINX Configuration
+  service:
+    name: nginx
+    state: reloaded
+
+- name: Restart uWSGI configuration
+  systemd:
+    name: emperor.uwsgi
+    state: restarted

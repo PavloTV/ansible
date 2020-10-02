@@ -1,0 +1,8 @@
+---
+- name: Upload project
+  copy:
+    src: test_app-master/
+    dest: /opt/app
+    owner: app-user
+    group: www-data
+    mode: "u+rw,g-wx,o-rwx"

@@ -1,0 +1,48 @@
+---
+- name: force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
+- name: Test GET payMethods
+  delegate_to: localhost
+  uri:
+    url: "https://{{ server_domain }}:{{ app_port }}/payMethods"
+    status_code: 200
+    method: GET
+  register: this
+  tags: TEST
+
+- name: Assert POST payMethods
+  assert: that="this.json.invoice and this.json.withdraw"
+  ignore_errors: True
+  tags: TEST
+
+- name: Test GET payMethods calculate
+  delegate_to: localhost
+  uri:
+    url: "https://{{ server_domain }}:{{ app_port }}/payMethods/calculate?invoicePayMethod=6&withdrawPayMethod=4&base=invoice&amount=5"
+    status_code: 200
+    method: GET
+  register: this
+  tags: TEST
+
+- name: Assert POST payMethods calculate
+  assert: that="this.json.amount"
+  ignore_errors: True
+  tags: TEST
+
+- name: Test POST bids
+  delegate_to: localhost
+  uri:
+    url: "https://{{ server_domain }}:{{ app_port }}/bids"
+    status_code: 200
+    method: POST
+    body: '{"invoicePayMethod":6,"withdrawPayMethod":4,"base":"invoice","amount":5.1}'
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+  register: this
+  tags: TEST
+
+- name: Assert POST bids
+  assert: that="this.json.message == 'Success'"
+  tags: TEST

@@ -1,0 +1,13 @@
+---
+- name: Reload NGINX Configuration
+  service:
+    name: nginx
+    state: reloaded
+
+- name: Block incoming http connections for letsencrypt
+  ufw:
+    delete: yes
+    rule: allow
+    proto: tcp
+    to_port: "80"
+    comment: Allow incoming http connections for letsencrypt

@@ -1,0 +1,4 @@
+---
+# vars file for app
+nginx_vhost_path: /etc/nginx/sites-enabled
+app_name: "test_app"

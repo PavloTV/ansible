@@ -1,0 +1,17 @@
+[uwsgi]
+chdir = /opt/app/
+module = app:app
+
+master = true
+processes = 5
+
+socket = /run/uwsgi/{{ app_name }}.sock
+chmod-socket = 660
+vacuum = true
+
+die-on-term = true
+
+env=FLASK_LOG_TO_DIR=/tmp/
+env=FLASK_LOG_LEVEL=INFO
+env=FLASK_CALCULATE_WAIT_TIME=3
+env=FLASK_BID_CREATION_WAIT_TIME=2

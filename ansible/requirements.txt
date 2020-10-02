@@ -1,0 +1,7 @@
+pip>=20.2.3
+wheel>=0.35.1
+setuptools>=50.3.0
+virtualenv>=20.0.31
+ansible==2.9.13
+passlib==1.7.2
+ansible-lint

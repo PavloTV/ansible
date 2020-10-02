@@ -1,0 +1,15 @@
+---
+- name: Restart uWSGI
+  systemd:
+    name: emperor.uwsgi
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    masked: no
+
+- name: Enable and start uWSGI
+  systemd:
+    name: emperor.uwsgi
+    enabled: yes
+    state: started
+    masked: no

@@ -1,0 +1,6 @@
+---
+- name: Remove default nginx vhost config file
+  file:
+    path: "{{ defaul_nginx_vhost_path }}"
+    state: absent
+  notify: Restart NGINX

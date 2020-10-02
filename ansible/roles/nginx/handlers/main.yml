@@ -1,0 +1,14 @@
+---
+- name: Restart NGINX
+  service:
+    name: nginx
+    state: restarted
+
+- name: Test NGINX Configuration
+  command: nginx -t
+  changed_when: false
+
+- name: Reload NGINX Configuration
+  service:
+    name: nginx
+    state: reloaded

@@ -1,0 +1,11 @@
+---
+- name: Check update required
+  include_tasks: check.yml
+
+- name: Configuring prerequirements
+  include_tasks: config.yml
+  when: outdated_certificate_found.matched == 1 or outdated_certificate_found.examined == 0
+
+- name: Update letsencrypt cert
+  include_tasks: lets.yml
+  when: outdated_certificate_found.matched == 1 or outdated_certificate_found.examined == 0

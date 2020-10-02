@@ -1,0 +1,11 @@
+---
+# tasks file for app
+- name: Deploy app
+  include_tasks: upload.yml
+
+- name: Configure server
+  include_tasks: config.yml
+
+- name: Test app
+  include_tasks: test.yml
+  tags: TEST

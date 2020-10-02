@@ -1,0 +1,18 @@
+---
+allowed_tcp_ports: "{{ [app_port] + ['22'] }}"
+
+create_remote_user: ubuntu
+
+copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+first_run_loc_file: "/opt/deployed.loc"
+
+reboot_required_file: "/var/run/reboot-required.pkgs"
+
+system_packages: ['mc', 'htop', 'git']
+
+python3_packages: ['python3', 'python3-pip', 'python3-dev', 'build-essential', 'libssl-dev', 'libffi-dev', 'python3-setuptools', 'python3-venv', 'python3-virtualenv']
+
+python3_modules: ['pip', 'wheel', 'setuptools', 'virtualenv']
+
+required_packages: "{{ python3_packages + system_packages }}"

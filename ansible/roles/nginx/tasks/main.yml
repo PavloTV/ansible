@@ -1,0 +1,9 @@
+---
+- name: Setup NGINX
+  include_tasks: setup.yml
+
+- name: Configuring NGINX
+  include_tasks: config.yml
+
+- name: Check services is running
+  include_tasks: check.yml

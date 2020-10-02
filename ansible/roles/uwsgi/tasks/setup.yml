@@ -1,0 +1,6 @@
+---
+- name: Install uWSGI
+  pip:
+    state: latest
+    name:
+      - uwsgi

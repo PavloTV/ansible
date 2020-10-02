@@ -1,0 +1,24 @@
+---
+- name: Install app requirements
+  pip:
+    state: latest
+    requirements: /opt/app/requirements.txt
+
+- name: Upload uWSGI vassal config
+  template:
+    src: uwsgi-vassal.ini.j2
+    dest: /etc/uwsgi/vassals/{{ app_name }}.ini
+    force: true
+    owner: app-user
+    group: www-data
+    mode: "0644"
+
+- name: Upload NGINX vhost config files
+  template:
+    src: nginx-vhost.j2
+    dest: "{{ nginx_vhost_path }}/{{ server_domain }}.conf"
+    force: true
+    owner: www-data
+    group: www-data
+    mode: "0644"
+  notify: Reload NGINX Configuration

@@ -1,0 +1,8 @@
+---
+- name: Find outdated challenge files
+  find:
+    paths: "{{ letsencrypt_certs_dir }}"
+    pattern: "fullchain_{{ domain_name }}.pem"
+    file_type: file
+    age: "60d"
+  register: outdated_certificate_found

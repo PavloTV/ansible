@@ -1,0 +1,38 @@
+---
+- name: Create folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+  with_items:
+    - /etc/uwsgi
+    - /etc/uwsgi/vassals
+    - /opt/uwsgi
+
+- name: Upload uWSGI config
+  template:
+    src: emperor.ini.j2
+    dest: /etc/uwsgi/emperor.ini
+    force: true
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart uWSGI
+
+- name: Upload uWSGI systemd unit file
+  template:
+    src: emperor.uwsgi.service.j2
+    dest: /opt/uwsgi/emperor.uwsgi.service
+    force: true
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart uWSGI
+
+- name: Create symlink for systemd unit file
+  file:
+   src: /opt/uwsgi/emperor.uwsgi.service
+   dest: /etc/systemd/system/emperor.uwsgi.service
+   state: link
+  notify: Enable and start uWSGI

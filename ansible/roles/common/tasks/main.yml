@@ -1,0 +1,11 @@
+---
+  #tasks file for common
+- name: Create and setup users credentials
+  include_tasks: credentials.yml
+  tags: credentials
+
+- name: Install common packages
+  include_tasks: packages.yml
+
+- name: Setup firewall
+  include_tasks: firewall.yml

@@ -1,0 +1,16 @@
+---
+- name: Configuring UFW incoming rules
+  ufw:
+    rule: allow
+    proto: tcp
+    from_ip: "{{ item[0] }}"
+    to_port: "{{ item[1] }}"
+    comment: Allow incoming connections from IP "{{ item[0] }}" to port "{{ item[1] }}"
+  with_nested:
+    - "{{ trusted_addresses }}"
+    - "{{ allowed_tcp_ports }}"
+
+- name: Enable UFW and apply block policy
+  ufw:
+    state: enabled
+    policy: deny

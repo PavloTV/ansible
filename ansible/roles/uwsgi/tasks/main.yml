@@ -1,0 +1,9 @@
+---
+- name: Setup uWSGI
+  include_tasks: setup.yml
+
+- name: Configuring uWSGI
+  include_tasks: config.yml
+
+- name: Check services is running
+  include_tasks: check.yml
